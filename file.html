@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>C# Academy — Learning Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+/* ══════════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════════ */
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar">
+  <div class="logo" onclick="navigate('home')"><span class="cs">C#</span> <span class="ac">Academy</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="navigate('home')"      data-page="home"> Home</a></li>
+    <li><a onclick="navigate('topics')"    data-page="topics"> Topics</a></li>
+    <li><a onclick="navigate('progress')"  data-page="progress"> My Progress</a></li>
+    <li><a onclick="navigate('resources')" data-page="resources"> Resources</a></li>
+    <li><a onclick="navigate('contact')"   data-page="contact"> Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+</nav>
+
+<!-- ══════════════════════════════════════
+     PAGE 1 — HOME
+══════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <!-- HERO -->
+  <section style="min-height:100vh;display:flex;align-items:center;padding:6rem 1.5rem 3rem;background:radial-gradient(ellipse at 20% 50%,rgba(59,130,246,.1) 0%,transparent 55%),radial-gradient(ellipse at 80% 50%,rgba(6,182,212,.07) 0%,transparent 55%)">
+    <div class="hero-inner" style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;width:100%">
+      <!-- Left -->
+      <div style="flex:1;min-width:280px">
+        <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:30px;padding:.3rem .9rem;font-size:.8rem;color:var(--primary);font-weight:700;margin-bottom:1.5rem">
+          ✦ 100% Free Learning Platform
+        </div>
+        <h1 style="font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:1.2rem">
+          Learn <span class="hl-blue">C#</span><br>from <span class="hl-cyan">Zero</span> to Pro
+        </h1>
+        <p style="color:var(--muted2);font-size:1.05rem;margin-bottom:2rem;max-width:450px">
+          A comprehensive platform covering all C# topics with real examples, interactive quizzes, and step-by-step progress tracking.
+        </p>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.5rem">
+          <button class="btn btn-primary" onclick="navigate('topics')"> Start Learning</button>
+        </div>
+        <div class="stats-row" style="display:flex;gap:2.5rem;flex-wrap:wrap">
+          <div style="text-align:center"><div style="font-size:2rem;font-weight:900;color:var(--primary)" id="cnt1">0</div><div style="font-size:.8rem;color:var(--muted)">Topics</div></div>
+          <div style="text-align:center"><div style="font-size:2rem;font-weight:900;color:var(--cyan)"   id="cnt2">0</div><div style="font-size:.8rem;color:var(--muted)">Questions</div></div>
+          <div style="text-align:center"><div style="font-size:2rem;font-weight:900;color:var(--green)"  id="cnt3">0</div><div style="font-size:.8rem;color:var(--muted)">Resources</div></div>
+        </div>
+      </div>
+      <!-- Right: code window -->
+      <div style="flex:1;min-width:280px;max-width:500px">
+        <div class="code-window" style="box-shadow:var(--shadow)">
+          <div class="code-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span style="margin-left:auto;font-size:.78rem;color:var(--muted)">Program.cs</span>
+          </div>
+          <pre id="typingEl"></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section style="padding:5rem 1.5rem;background:var(--bg2)">
+    <div class="section-wrap">
+      <h2 class="section-title">Why C# Academy?</h2>
+      <div class="card-grid">
+        <div class="card"><span class="card-icon"></span><h3>Structured Curriculum</h3><p>Topics ordered from beginner to advanced in a clear, logical sequence.</p></div>
+        <div class="card"><span class="card-icon"></span><h3>Real Code Examples</h3><p>Working code you can try immediately, with line-by-line explanations.</p></div>
+        <div class="card"><span class="card-icon"></span><h3>Progress Tracking</h3><p>See exactly what you've completed and what's left to study.</p></div>
+        <div class="card"><span class="card-icon"></span><h3>Assessment Quizzes</h3><p>Test your knowledge after each group of topics and get instant feedback.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS PREVIEW -->
+  <section style="padding:5rem 1.5rem">
+    <div class="section-wrap">
+      <h2 class="section-title">Featured Topics</h2>
+      <div id="homeTopicGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:1rem;margin-bottom:2rem"></div>
+      <div style="text-align:center"><button class="btn btn-primary" onclick="navigate('topics')">View All Topics →</button></div>
+    </div>
+  </section>
+
+  <footer class="footer"> this was made for DR.ali   — Free Learning Platform for Programming Students</footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 2 — TOPICS
+══════════════════════════════════════════ -->
+<div id="page-topics" class="page">
+  <div class="page-header">
+    <h1><span class="hl-blue">C#</span> Topics</h1>
+    <p>12 topics from Beginner to Advanced — click any topic to view the code</p>
+  </div>
+  <section style="padding:2rem 1.5rem 5rem">
+    <div class="section-wrap">
+      <div class="filter-bar">
+        <button class="fbtn active" onclick="filterTopics('all',this)">All</button>
+        <button class="fbtn" onclick="filterTopics('b',this)"> Beginner</button>
+        <button class="fbtn" onclick="filterTopics('m',this)"> Intermediate</button>
+        <button class="fbtn" onclick="filterTopics('a',this)"> Advanced</button>
+      </div>
+      <div class="table-wrap" style="margin-bottom:1.5rem">
+        <table><thead><tr><th>#</th><th>Topic</th><th>Level</th><th>Quick Description</th><th>Action</th></tr></thead>
+        <tbody id="topicsBody"></tbody></table>
+      </div>
+      <div class="detail-panel" id="topicDetail">
+        <h3 id="detailTitle" style="color:var(--primary);margin-bottom:.8rem;font-size:1.3rem"></h3>
+        <p id="detailDesc" style="color:var(--muted2);margin-bottom:.5rem"></p>
+        <div class="code-block" id="detailCode"></div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem">
+          <button class="btn btn-green btn-sm" onclick="markTopicDone()"> Mark as Studied</button>
+          <button class="btn btn-outline btn-sm" onclick="closeDetail()"> Close</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"> this was made for DR.ali  </footer>
+</div>
+<!-- ══════════════════════════════════════
+     PAGE 4 — PROGRESS
+══════════════════════════════════════════ -->
+<div id="page-progress" class="page">
+  <div class="page-header">
+    <h1> Track My <span class="hl-cyan">Progress</span></h1>
+    <p>Monitor your achievements across every topic</p>
+  </div>
+  <section style="padding:2rem 1.5rem 5rem">
+    <div class="section-wrap">
+      <!-- Summary -->
+      <div class="card-grid" style="margin-bottom:2rem" id="progSummary"></div>
+      <!-- Overall bar -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;margin-bottom:2rem">
+        <div style="display:flex;justify-content:space-between;margin-bottom:.5rem">
+          <span style="font-weight:700">Overall Progress</span>
+          <span id="overallPct" style="color:var(--primary);font-weight:800">0%</span>
+        </div>
+        <div class="prog-track" style="height:14px">
+          <div class="prog-fill" id="overallBar" style="width:0%;background:linear-gradient(90deg,var(--primary),var(--cyan))"></div>
+        </div>
+      </div>
+      <!-- Level bars -->
+      <h3 style="font-size:1rem;margin-bottom:1rem;font-weight:700">Progress by Level</h3>
+      <div id="levelBars" style="margin-bottom:2rem"></div>
+      <!-- Table -->
+      <h3 style="font-size:1rem;margin-bottom:1rem;font-weight:700">Topic Details</h3>
+      <div class="table-wrap" style="margin-bottom:2rem">
+        <table><thead><tr><th>Topic</th><th>Level</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="progTableBody"></tbody></table>
+      </div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+        <button class="btn btn-primary"  onclick="navigate('topics')"> Continue Studying</button>
+        <button class="btn btn-red btn-sm" onclick="resetProg()"> Reset Progress</button>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"> this was made for DR.ali  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 5 — RESOURCES
+══════════════════════════════════════════ -->
+<div id="page-resources" class="page">
+  <div class="page-header">
+    <h1> Learning <span class="hl-cyan">Resources</span></h1>
+    <p>Best websites, books, and tools to deepen your C# knowledge</p>
+  </div>
+  <section style="padding:2rem 1.5rem 5rem">
+    <div class="section-wrap">
+      <!-- Search -->
+      <div style="max-width:480px;margin:0 auto 1.5rem">
+        <input type="text" id="resSearch" placeholder="🔍 Search resources..."
+          oninput="renderResources()"
+          style="width:100%;padding:.75rem 1.2rem;background:var(--card);border:1px solid var(--border2);border-radius:30px;color:var(--text);font-family:'Inter',sans-serif;font-size:.92rem">
+      </div>
+      <div class="filter-bar">
+        <button class="fbtn active" onclick="filterRes('all',this)">All</button>
+        <button class="fbtn" onclick="filterRes('website',this)"> Websites</button>
+        <button class="fbtn" onclick="filterRes('book',this)"> Books</button>
+        <button class="fbtn" onclick="filterRes('video',this)"> Videos</button>
+        <button class="fbtn" onclick="filterRes('tool',this)"> Tools</button>
+      </div>
+      <div id="resGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.3rem;margin-bottom:3rem"></div>
+
+      <!-- IDE Comparison Table -->
+      <h2 class="section-title">IDE Comparison</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>IDE</th><th>Free?</th><th>Platforms</th><th>Features</th><th>Best For</th></tr></thead>
+          <tbody>
+            <tr><td>Visual Studio 2022</td><td class="st-done">✔ Community</td><td>Win / Mac</td><td>IntelliSense, Debugger, Designer</td><td>Full projects</td></tr>
+            <tr><td>VS Code</td><td class="st-done">✔ Free</td><td>Win / Mac / Linux</td><td>Lightweight, C# extension, Git</td><td>Beginners, small projects</td></tr>
+            <tr><td>Rider (JetBrains)</td><td class="st-partial">~ Free for students</td><td>Win / Mac / Linux</td><td>High performance, smart analysis</td><td>Professional developers</td></tr>
+            <tr><td>dotnetfiddle.net</td><td class="st-done">✔ Free</td><td>Browser</td><td>No installation, instant run</td><td>Quick experiments</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"> this was made for DR.ali  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 6 — CONTACT
+══════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="page-header">
+    <h1> <span class="hl-blue">Contact</span> Us</h1>
+    <p>Questions? Suggestions? Register a new account? We're here!</p>
+  </div>
+  <section style="padding:2rem 1.5rem 5rem">
+    <div class="section-wrap">
+      <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:2.5rem;flex-wrap:wrap" id="contactGrid">
+        <!-- Info -->
+        <div>
+          <h3 style="font-size:1.1rem;margin-bottom:1.2rem;font-weight:800">Contact Information</h3>
+          <div style="display:flex;flex-direction:column;gap:.9rem;margin-bottom:2rem">
+            <div class="card" style="padding:1rem;display:flex;align-items:center;gap:.8rem"><span style="font-size:1.4rem"></span><div><strong style="font-size:.9rem">Email</strong><br><span style="color:var(--muted);font-size:.85rem">zabuawwad4@gmail.com</span></div></div>
+            <div class="card" style="padding:1rem;display:flex;align-items:center;gap:.8rem"><span style="font-size:1.4rem"></span><div><strong style="font-size:.9rem">instagram</strong><br><span style="color:var(--muted);font-size:.85rem">@z.3wad</span></div></div>
+            <div class="card" style="padding:1rem;display:flex;align-items:center;gap:.8rem"><span style="font-size:1.4rem"></span><div><strong style="font-size:.9rem">Response Hours</strong><br><span style="color:var(--muted);font-size:.85rem">Sun – Thu, 9 AM – 6 PM</span></div></div>
+          </div>
+          <h4 style="font-size:.95rem;margin-bottom:1rem;font-weight:800">Frequently Asked Questions</h4>
+          <div id="faqList"></div>
+        </div>
+        <!-- Forms -->
+        <div>
+          <div class="success-box" id="successBox"> Sent successfully! Thank you for reaching out.</div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem">
+            <div style="display:flex;gap:.5rem;margin-bottom:1.5rem">
+              <button class="fbtn active" id="tabA" onclick="switchTab('contact')"> Contact</button>
+              <button class="fbtn" id="tabB" onclick="switchTab('register')"> Register</button>
+            </div>
+            <!-- Contact Form -->
+            <div id="formContact">
+              <div class="form-row">
+                <div class="form-group"><label>First Name *</label><input type="text" id="f_fname" placeholder="John"><div class="err-msg" id="e_fname">First name is required</div></div>
+                <div class="form-group"><label>Last Name *</label><input type="text" id="f_lname" placeholder="Doe"><div class="err-msg" id="e_lname">Last name is required</div></div>
+              </div>
+              <div class="form-group"><label>Email Address *</label><input type="email" id="f_email" placeholder="example@mail.com"><div class="err-msg" id="e_email">Invalid email address</div></div>
+              <div class="form-group"><label>Inquiry Type</label>
+                <select id="f_type"><option value="">— Select —</option><option>Technical Question</option><option>Topic Suggestion</option><option>Report a Bug</option><option>Other</option></select>
+              </div>
+              <div class="form-group"><label>Subject *</label><input type="text" id="f_subj" placeholder="Message subject"><div class="err-msg" id="e_subj">Subject is required</div></div>
+              <div class="form-group"><label>Message *</label><textarea id="f_msg" placeholder="Write your message here..."></textarea><div class="err-msg" id="e_msg">At least 10 characters required</div></div>
+              <div class="form-group" style="display:flex;align-items:center;gap:.6rem">
+                <input type="checkbox" id="f_agree" style="width:auto">
+                <label for="f_agree" style="margin:0;font-size:.85rem;color:var(--muted2)">I agree to the Privacy Policy</label>
+              </div>
+              <div class="err-msg" id="e_agree" style="margin-bottom:.8rem">You must agree first</div>
+              <button class="btn btn-primary" style="width:100%" onclick="submitContact()">Send Message →</button>
+            </div>
+            <!-- Register Form -->
+            <div id="formRegister" style="display:none">
+              <div class="form-row">
+                <div class="form-group"><label>Full Name *</label><input type="text" id="r_name" placeholder="Jane Smith"><div class="err-msg" id="re_name">Name is required</div></div>
+                <div class="form-group"><label>Age</label><input type="number" id="r_age" placeholder="20" min="10" max="100"></div>
+              </div>
+              <div class="form-group"><label>Email Address *</label><input type="email" id="r_email" placeholder="example@mail.com"><div class="err-msg" id="re_email">Invalid email address</div></div>
+              <div class="form-group"><label>Current Level</label>
+                <select id="r_level">
+                  <option>Complete Beginner</option>
+                  <option>Some Programming Background</option>
+                  <option>Know C# Basics</option>
+                  <option>Intermediate in C#</option>
+                </select>
+              </div>
+              <div class="form-group"><label>Password *</label><input type="password" id="r_pass" placeholder="••••••••" oninput="checkStrength()"><div class="err-msg" id="re_pass">At least 6 characters</div></div>
+              <div style="margin-bottom:1rem">
+                <div style="display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:.3rem"><span style="color:var(--muted)">Password Strength</span><span id="strengthLbl">—</span></div>
+                <div class="prog-track" style="height:6px"><div id="strengthBar" style="height:100%;width:0%;border-radius:10px;background:var(--red);transition:all .3s"></div></div>
+              </div>
+              <div class="form-group"><label>Confirm Password *</label><input type="password" id="r_pass2" placeholder="••••••••"><div class="err-msg" id="re_pass2">Passwords do not match</div></div>
+              <button class="btn btn-green" style="width:100%" onclick="submitRegister()">Create Account →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"> this was made for DR.ali  </footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
